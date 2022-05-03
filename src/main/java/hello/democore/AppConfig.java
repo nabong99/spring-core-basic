@@ -8,11 +8,21 @@ import hello.democore.order.OrderService;
 import hello.democore.order.OrderServiceImpl;
 
 public class AppConfig {
+    //리펙토링 후
+    //역할과 구현 클래스가 한눈에 들어온다
     public MemberService memberService(){
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
+    }
+
+    private MemoryMemberRepository memberRepository() { //역할
+        return new MemoryMemberRepository(); //구현현
     }
 
     public OrderService orderService(){
-        return new OrderServiceImpl(new MemoryMemberRepository(),new FixDiscountPolicy());
+        return new OrderServiceImpl(new MemoryMemberRepository(), discountPolicy ());
+    }
+
+    private FixDiscountPolicy discountPolicy () {
+        return new FixDiscountPolicy();
     }
 }
