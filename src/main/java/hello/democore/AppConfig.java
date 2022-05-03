@@ -1,6 +1,9 @@
 package hello.democore;
 
+import hello.democore.discount.DiscountPolicy;
 import hello.democore.discount.FixDiscountPolicy;
+import hello.democore.discount.RateDiscountPolicy;
+import hello.democore.member.MemberRepository;
 import hello.democore.member.MemberService;
 import hello.democore.member.MemberServiceImpl;
 import hello.democore.member.MemoryMemberRepository;
@@ -14,7 +17,7 @@ public class AppConfig {
         return new MemberServiceImpl(memberRepository());
     }
 
-    private MemoryMemberRepository memberRepository() { //역할
+    private MemberRepository memberRepository() { //역할
         return new MemoryMemberRepository(); //구현현
     }
 
@@ -22,7 +25,8 @@ public class AppConfig {
         return new OrderServiceImpl(new MemoryMemberRepository(), discountPolicy ());
     }
 
-    private FixDiscountPolicy discountPolicy () {
-        return new FixDiscountPolicy();
+    private DiscountPolicy discountPolicy () {
+        //return new FixDiscountPolicy();
+        return new RateDiscountPolicy(); //사용영역이 아닌 구성영역만 변경해주면됨
     }
 }
