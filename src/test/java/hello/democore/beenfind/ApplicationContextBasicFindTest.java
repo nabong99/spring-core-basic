@@ -16,7 +16,7 @@ public class ApplicationContextBasicFindTest {
             AnnotationConfigApplicationContext(AppConfig.class);
 
     @Test
-    @DisplayName("빈 이름으로 조회")
+    @DisplayName("빈 이름으로 조회 22")
     void findBeanByName(){
         MemberService memberService = ac.getBean("memberService", MemberService.class);
         Assertions.assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
